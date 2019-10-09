@@ -494,6 +494,9 @@ class BaseType implements JmesPathableObjectInterface
 
         if (!$isValid) {
             $expectedType = $info['type'];
+            if ($expectedType === 'double' && $actualType === 'integer') {
+                return true;
+            }
             throw new Exceptions\InvalidPropertyTypeException($name, $expectedType, $actualType);
         }
     }
